@@ -1,0 +1,19 @@
+.errorPageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    width: 100%;
+    flex-direction: column;
+    padding-bottom: 4rem;
+    .errorPageLink {
+        color: #ba99bd;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        &:hover {
+            color: #8c6f8e;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+.jobSkelletonContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.7rem;
+    column-gap: 0.9rem;
+    padding: 0 1rem;
+    margin-top: 0.65rem;
+
+    .jobSkelleton {
+        height: 12rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+
+        background: linear-gradient(
+            45deg,
+            #181818 0%,
+            #282828 50%,
+            #181818 100%
+        );
+        background-size: 400% 400%;
+        animation: skelleton 2s infinite ease-in-out;
+    }
+
+    @keyframes skelleton {
+        0% {
+            background-position: -200%;
+        }
+        100% {
+            background-position: 200%;
+        }
+    }
+}

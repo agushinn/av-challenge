@@ -1,0 +1,128 @@
+.jobPageTitle {
+    color: #ccc;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.formJob {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    margin: auto;
+    width: 70%;
+    background-color: #181818;
+    padding: 2rem;
+    border-radius: 5px;
+    .salariesContainer {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+    input {
+        padding: 0.5rem;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+
+    .buttonsContainers {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        align-items: center;
+
+        .searchButton,
+        .cleanButton {
+            padding: 0.5rem;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            width: 9rem;
+            font-weight: 600;
+            color: #ccc;
+        }
+
+        .searchButton {
+            background-color: #33680a;
+            &:hover {
+                background-color: #96c671;
+                color: #5c5c5c;
+            }
+        }
+        .cleanButton {
+            background-color: #8c0b0b;
+            &:hover {
+                background-color: #e06b6b;
+                color: #5c5c5c;
+            }
+        }
+    }
+    .checkboxContainer {
+        display: flex;
+        justify-content: end;
+    }
+}
+
+.jobsContainer {
+    display: flex;
+    justify-content: space-evenly;
+    .jobsList {
+        width: 48%;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+
+        h5 {
+            color: #ccc;
+            text-align: center;
+            margin: 1rem 0;
+        }
+    }
+
+    .internalJobs {
+        h2 {
+            color: #ccc;
+        }
+        height: 12rem;
+        background-color: #390010;
+        border: 1px solid #ccc;
+        color: #ecbfcc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        position: relative;
+        .editButton {
+            position: absolute;
+            right: 0.5rem;
+            top: 2.5rem;
+            a {
+                padding: 0.5rem;
+                border: 1px solid black;
+                border-radius: 5px;
+                background-color: #aaaaaa;
+                cursor: pointer;
+                text-decoration: none;
+                font-weight: 600;
+                color: #000000;
+                &:hover {
+                    background-color: #919191;
+                }
+            }
+        }
+    }
+
+    .externalJob {
+        height: 12rem;
+        h2 {
+            color: #ccc;
+        }
+        color: #ba99bd;
+        background-color: #27002a;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+    }
+}

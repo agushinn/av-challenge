@@ -1,0 +1,42 @@
+.layout {
+    padding-top: 2rem;
+    width: 90%;
+    margin: auto;
+    height: fit-content;
+    background-color: rgb(47, 47, 47);
+}
+
+.layoutTitle {
+    text-align: center;
+}
+
+.layoutNav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+    .layoutNavList {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style-type: none;
+        width: 100%;
+        padding: 0;
+        li {
+            min-width: 8rem;
+            a {
+                display: inline-block;
+                text-decoration: none;
+                text-align: center;
+                color: #777777;
+                width: 100%;
+                &.active,
+                &.inactive {
+                    color: #ffffff;
+                    text-decoration: none;
+                    transition: color 0.9s;
+                }
+            }
+        }
+    }
+}
