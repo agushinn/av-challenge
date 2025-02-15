@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\ApiController;
+use App\Services\UserService;
 
 /**
  * Class UserController
@@ -20,9 +21,9 @@ class UserController extends ApiController
      *
      * @param mixed $service The user service instance.
      */
-    public function __construct($service)
+    public function __construct(UserService $userService)
     {
-        $this->userService = $service;
+        $this->userService = $userService;
     }
 
     /**

@@ -2,24 +2,23 @@
 
 require_once '../vendor/autoload.php';
 
-
-header('Access-Control-Allow-Origin: http://localhost:5173');
-header('Access-Control-Allow-Methods:  POST');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
-header('Access-Control-Allow-Credentials: true');
-// API -> CONTROLLER -> SERVICE -> REPOSITORY -> DATABASE/CURL
-use App\Services\UserService;
+use DI\ContainerBuilder;
 use App\Controller\UserController;
 
-$userService = new UserService();
-$userController = new UserController($userService);
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions(__DIR__ . '/../config/dependencies.php');
+$container = $containerBuilder->build();
+
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type, Authorization');
+header('Access-Control-Allow-Credentials: true');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $bodyData = json_decode(file_get_contents('php://input'), true);
 
-    $result = $userController->createUser(
-        $bodyData
-    );
+    $userController = $container->get(UserController::class);
 
+    $result = $userController->createUser($bodyData);
     echo $result;
 }

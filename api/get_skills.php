@@ -1,16 +1,17 @@
 <?php
 
-
 require_once '../vendor/autoload.php';
 
-use App\Services\SkillService;
+use DI\ContainerBuilder;
 use App\Controller\SkillController;
 
-// api -> controller -> service -> repository -> database/curl
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions(__DIR__ . '/../config/dependencies.php');
+$container = $containerBuilder->build();
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    $skillService = new SkillService();
-    $skillController = new SkillController($skillService);
+    $skillController = $container->get(SkillController::class);
 
     echo $skillController->getAllSkills();
 }

@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Services\JobService;
 use App\Services\JobExternalService;
+use App\Strategy\StrategyInterspersed;
+use App\Strategy\StrategyOrderly;
 
 /**
  * Class SearchService
@@ -17,10 +19,12 @@ class SearchService
     private $jobService;
     private $jobExternalService;
 
-    public function __construct()
-    {
-        $this->jobService = new JobService();
-        $this->jobExternalService = new JobExternalService();
+    public function __construct(
+        JobService $jobService,
+        JobExternalService $jobExternalService
+    ) {
+        $this->jobService = $jobService;
+        $this->jobExternalService = $jobExternalService;
     }
 
     /**
@@ -39,9 +43,9 @@ class SearchService
         $externalJobPosts = [];
 
         try {
-            $jobPostsResult = $this->jobService->getAllJobPosts($filters);
-            if (count($jobPostsResult) > 0) {
-                $jobPosts = $jobPostsResult;
+            $jobPosts = $this->jobService->getAllJobPosts($filters);
+            if (!count($jobPosts) > 0 && !is_array($jobPosts)) {
+                throw new \Exception('Error retrieving internal job posts.');
             }
         } catch (\Exception $e) {
             // Log the error or handle 
@@ -49,16 +53,19 @@ class SearchService
 
         if (isset($filters['include_external']) && $filters['include_external'] === true) {
             try {
-                $externalJobPostsResult = $this->jobExternalService->getAllJobPosts($filters);
-                if (count($externalJobPostsResult) > 0) {
-                    $externalJobPosts = $externalJobPostsResult;
+                $externalJobPosts = $this->jobExternalService->getAllJobPosts($filters);
+                if (!count($externalJobPosts) > 0 && !is_array($externalJobPosts)) {
+                    throw new \Exception('Error retrieving external job posts.');
                 }
             } catch (\Exception $e) {
                 // Log the error or handle 
             }
         }
 
-        $mergedJobPosts = array_merge($jobPosts, $externalJobPosts);
-        return $mergedJobPosts;
+
+        // $strategy = new StrategyInterspersed();
+        $strategy = new StrategyOrderly();
+        $sortedArray =  $strategy->sort($jobPosts, $externalJobPosts);
+        return $sortedArray;
     }
 }

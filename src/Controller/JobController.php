@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\ApiController;
+use App\Services\JobService;
 
 /**
  * Class JobController
@@ -20,9 +21,9 @@ class JobController extends ApiController
      *
      * @param mixed $service The job service instance.
      */
-    public function __construct($service)
+    public function __construct(JobService $jobService)
     {
-        $this->jobService = $service;
+        $this->jobService = $jobService;
     }
 
     /**

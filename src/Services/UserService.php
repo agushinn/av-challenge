@@ -16,12 +16,11 @@ class UserService
 {
     private $userRepository;
 
-    public function __construct()
+    public function __construct(UserRepository $userRepository)
     {
-        $config = require('../config/database.php');
-        $this->userRepository = new UserRepository($config['db']);
+        $this->userRepository = $userRepository;
     }
-
+ 
     /**
      * Creates a new user.
      *

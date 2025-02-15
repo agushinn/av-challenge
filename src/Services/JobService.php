@@ -19,14 +19,15 @@ class JobService
     private $alertService;
     private $userService;
 
-    public function __construct()
-    {
-        $config = require('../config/database.php');
-        $this->jobRepository = new JobRepository($config['db']);
-        $this->alertService = new AlertService();
-        $this->userService = new UserService();
+    public function __construct(
+        JobRepository $jobRepository,
+        AlertService $alertService,
+        UserService $userService
+    ) {
+        $this->jobRepository = $jobRepository;
+        $this->alertService = $alertService;
+        $this->userService = $userService;
     }
-
     /**
      * Retrieves all job posts based on the provided filters.
      *
@@ -86,20 +87,20 @@ class JobService
         $salary = filter_var($request['salary'], FILTER_VALIDATE_FLOAT);
         $skills = $request['skills'];
 
-        if (empty($title)) {
-            throw new \Exception('Title is required');
+        if (empty($title) || !is_string($title)) {
+            throw new \Exception('Title is required and must be a string');
         }
 
-        if (empty($description)) {
-            throw new \Exception('Description is required');
+        if (empty($description) || !is_string($description)) {
+            throw new \Exception('Description is required and must be a string');
         }
 
-        if (empty($location)) {
-            throw new \Exception('Location is required');
+        if (empty($location) || !is_string($location)) {
+            throw new \Exception('Location is required and must be a string');
         }
 
-        if (empty($salary)) {
-            throw new \Exception('Salary is required');
+        if (empty($salary) || is_nan($salary)) {
+            throw new \Exception('Salary is required and must be a number');
         }
 
         if (!is_array($skills) || empty($skills)) {
@@ -137,28 +138,28 @@ class JobService
         $salary = filter_var($request['salary'], FILTER_VALIDATE_FLOAT);
         $skills = $request['skills'];
 
-        if (empty($id)) {
-            throw new \Exception('Id is required');
+        if (empty($id) || is_nan($id)) {
+            throw new \Exception('Id is required and must be a number');
         }
 
-        if (empty($title)) {
-            throw new \Exception('Title is required');
+        if (empty($title) || !is_string($title)) {
+            throw new \Exception('Title is required and must be a string');
         }
 
-        if (empty($description)) {
-            throw new \Exception('Description is required');
+        if (empty($description) || !is_string($description)) {
+            throw new \Exception('Description is required and must be a string');
         }
 
-        if (empty($location)) {
-            throw new \Exception('Location is required');
+        if (empty($location) || !is_string($location)) {
+            throw new \Exception('Location is required and must be a string');
         }
 
-        if (empty($salary)) {
-            throw new \Exception('Salary is required');
+        if (empty($salary) || is_nan($salary)) {
+            throw new \Exception('Salary is required and must be a number');
         }
 
-        if (empty($skills)) {
-            throw new \Exception('Skills are required');
+        if (empty($skills) || !is_array($skills)) {
+            throw new \Exception('Skills are required and must be an array');
         }
 
         return $this->jobRepository->updateJobPost($id, $title, $description, $location, $salary, $skills);
@@ -175,8 +176,8 @@ class JobService
     {
         $id = filter_var($request['id'], FILTER_VALIDATE_INT);
 
-        if (empty($id)) {
-            throw new \Exception('Id is required');
+        if (empty($id) || is_nan($id)) {
+            throw new \Exception('Id is required and must be a number');
         }
 
         return $this->jobRepository->deleteJobPost($id);

@@ -2,18 +2,18 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
 require_once '../vendor/autoload.php';
 
-use App\Services\SearchService;
+use DI\ContainerBuilder;
 use App\Controller\SearchController;
 
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions(__DIR__ . '/../config/dependencies.php');
+$container = $containerBuilder->build();
 
-// api -> controller -> service -> repository -> database/curl
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    $searchService = new SearchService();
-    $searchController = new SearchController($searchService);
+    $searchController = $container->get(SearchController::class);
 
     echo $searchController->getAllJobs($_GET);
 }

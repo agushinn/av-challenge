@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Controller\ApiController;
+use App\Services\SearchService;
+
 
 /**
  * Class SearchController
@@ -20,9 +22,9 @@ class SearchController extends ApiController
      *
      * @param mixed $service The search service instance.
      */
-    public function __construct($service)
+    public function __construct(SearchService $searchService)
     {
-        $this->searchService = $service;
+        $this->searchService = $searchService;
     }
 
     /**

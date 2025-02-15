@@ -19,7 +19,7 @@ class ApiController
      * @param int $status The HTTP status code.
      * @return string The JSON-encoded response.
      */
-    public function sendResponse($data = [], $message = 'Success', $status = 200)
+    protected function sendResponse($data = [], $message = 'Success', $status = 200)
     {
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
@@ -42,7 +42,7 @@ class ApiController
      * @param int $status The HTTP status code.
      * @return string The JSON-encoded response.
      */
-    public function sendError($message, $status = 500)
+    protected function sendError($message, $status = 500)
     {
         header('Content-Type: application/json');
         header('HTTP/1.1 ' . $status . ' Internal Server Error');

@@ -1,19 +1,17 @@
 <?php
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
 
 require_once '../vendor/autoload.php';
 
-use App\Services\JobService;
+use DI\ContainerBuilder;
 use App\Controller\JobController;
 
+$containerBuilder = new ContainerBuilder();
+$containerBuilder->addDefinitions(__DIR__ . '/../config/dependencies.php');
+$container = $containerBuilder->build();
 
-// api -> controller -> service -> repository -> database/curl
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-    $jobService = new JobService();
-    $jobController = new JobController($jobService);
+    $jobController = $container->get(JobController::class);
 
     echo $jobController->getJobPostById($_GET);
 }

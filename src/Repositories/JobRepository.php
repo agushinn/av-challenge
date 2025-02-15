@@ -16,9 +16,8 @@ class JobRepository implements JobRepositoryInterface
 {
     private $connection;
 
-    public function __construct($config)
+    public function __construct(Database $database)
     {
-        $database = new Database($config);
         $this->connection = $database->getConnection();
     }
 

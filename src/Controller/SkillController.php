@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Controller\ApiController;
+use App\Services\SkillService;
 
 /**
  * Class SkillController
@@ -20,9 +21,9 @@ class SkillController extends ApiController
      *
      * @param mixed $service The skill service instance.
      */
-    public function __construct($service)
+    public function __construct(SkillService $skillService)
     {
-        $this->skillService = $service;
+        $this->skillService = $skillService;
     }
 
     /**

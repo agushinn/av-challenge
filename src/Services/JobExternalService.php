@@ -15,9 +15,9 @@ class JobExternalService
 {
     private $jobExternalRepository;
 
-    public function __construct()
+    public function __construct(JobExternalRepository $jobExternalRepository)
     {
-        $this->jobExternalRepository = new JobExternalRepository();
+        $this->jobExternalRepository = new $jobExternalRepository;
     }
 
     /**

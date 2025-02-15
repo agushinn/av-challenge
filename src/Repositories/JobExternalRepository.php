@@ -24,15 +24,15 @@ class JobExternalRepository implements JobRepositoryInterface
     /**
      * Retrieves all job posts from the external API based on the provided query parameters.
      *
-     * @param array $queryParams The query parameters to filter the job posts.
+     * @param array $filters The query parameters to filter the job posts.
      * @return array The list of job posts retrieved from the external API.
      */
-    public function getAllJobPosts($queryParams = [])
+    public function getAllJobPosts($filters = [])
     {
         $url = $this->apiUrl . '/jobs';
 
-        if (isset($queryParams)) {
-            $url .= '?' . http_build_query($queryParams);
+        if (isset($filters)) {
+            $url .= '?' . http_build_query($filters);
         }
 
         $ch = curl_init($url);

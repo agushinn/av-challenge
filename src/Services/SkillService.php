@@ -15,10 +15,9 @@ class SkillService
 {
     private $skillRepository;
 
-    public function __construct()
+    public function __construct(SkillRepository $skillRepository)
     {
-        $config = require('../config/database.php');
-        $this->skillRepository = new SkillRepository($config['db']);
+        $this->skillRepository = $skillRepository;
     }
 
     /**
