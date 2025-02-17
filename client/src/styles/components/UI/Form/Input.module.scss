@@ -1,0 +1,15 @@
+.formGroup {
+    display: flex;
+    gap: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+
+    .inputComponent {
+        padding: 0.5rem;
+        border: 1px solid black;
+        border-radius: 5px;
+        width: 90%;
+        margin-bottom: 1rem;
+    }
+}
