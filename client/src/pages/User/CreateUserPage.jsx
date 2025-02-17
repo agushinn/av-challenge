@@ -5,6 +5,8 @@ import styles from '@styles/pages/User/CreateUserPage.module.scss'
 import { useCreateUserMutation } from '@store/api/apiSlice/usersSlice'
 import { useNavigate } from 'react-router-dom'
 
+import { Input } from '@components/UI/Form/Input'
+import { Checkbox } from '@components/UI/Form/Checkbox'
 import { Modal } from '@components/UI/Modal'
 
 const CreateUserPage = () => {
@@ -29,7 +31,6 @@ const CreateUserPage = () => {
         {
             isSuccess: isCreated,
             isError: isErrorCreated,
-            error,
             isLoading: isCreating,
         },
     ] = useCreateUserMutation()
@@ -84,46 +85,34 @@ const CreateUserPage = () => {
             <h2 className={styles.createUserTitle}>Create User</h2>
             <form onSubmit={handleSubmit} className={styles.createUserForm}>
                 <div className={styles.formContent}>
-                    <div className={styles.formGroup}>
-                        <label htmlFor="title">Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            value={formValues.name}
+                    <Input
+                        label="Name"
+                        value={formValues.name}
+                        onChange={handleInputChange}
+                        name="name"
+                        placeholder="John Doe"
+                    />
+                    <Input
+                        label="Email"
+                        value={formValues.email}
+                        onChange={handleInputChange}
+                        name="email"
+                        placeholder="jondoe@mail.com"
+                    />
+                    <Input
+                        label="Password"
+                        value={formValues.password}
+                        onChange={handleInputChange}
+                        name="password"
+                        placeholder="password"
+                        type="password"
+                    />
+                    <div className={styles.formGroupCheckbox}>
+                        <Checkbox
+                            label="Suscribe to newsletter"
+                            checked={formValues.newsletter_suscribed}
                             onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            name="email"
-                            value={formValues.email}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            name="password"
-                            value={formValues.password}
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div
-                        className={
-                            styles.formGroup + ' ' + styles.formGroupCheckbox
-                        }
-                    >
-                        <label htmlFor="newsletter_suscribed">
-                            Suscribe to newslleter
-                        </label>
-                        <input
-                            type="checkbox"
                             name="newsletter_suscribed"
-                            value={formValues.newsletter_suscribed}
-                            onChange={handleInputChange}
                         />
                     </div>
                 </div>

@@ -3,63 +3,42 @@
     text-align: center;
     margin: 1rem 0;
 }
+
 .createUserForm {
-    .formContent {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
     gap: 1rem;
     margin: auto;
     width: 70%;
     background-color: #181818;
     padding: 2rem;
     border-radius: 5px;
-    .formGroup {
+
+    .formContent {
         display: flex;
-        gap: 0.5rem;
         flex-direction: column;
         justify-content: center;
-        align-items: start;
     }
 
-    input[type='text'],
-    input[type='password'],
-    input[type='email'] {
-        padding: 0.5rem;
-        border: 1px solid black;
-        border-radius: 5px;
-        width: 90%;
-        margin-bottom: 1rem;
-    }
     .formGroupCheckbox {
         display: flex;
-        justify-content: start;
+        justify-content: end;
         align-items: center;
-        flex-direction: row-reverse;
-        label {
-            color: #ccc;
-            font-size: 1.2rem;
-        }
-        input {
-            width: 1rem;
-            height: 2rem;
-        }
     }
+
     .createUserButton {
         display: flex;
         justify-content: center;
+
         button {
             padding: 0.5rem;
             border: 1px solid black;
             border-radius: 5px;
-
             cursor: pointer;
             width: 9rem;
             font-weight: 600;
             color: #ccc;
             margin-top: 1rem;
             background-color: #33680a;
+
             &:hover {
                 background-color: #96c671;
                 color: #5c5c5c;
@@ -74,13 +53,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .createUserTitle,
     .errorTitle {
         text-align: center;
     }
-}
-.creatingUserTitle {
-    text-align: center;
 }
 
 .homepageButton {
