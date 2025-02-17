@@ -1,0 +1,52 @@
+.jobsListTitle {
+    color: #ccc;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.jobsList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    .jobItem {
+        width: 35rem;
+        height: 14rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+
+        @media (max-width: 1400px) {
+            width: 30rem;
+        }
+
+        @media (max-width: 1200px) {
+            width: 22rem;
+        }
+        @media (max-width: 576px) {
+            width: 25rem;
+            height: 12rem;
+            font-size: 0.9rem;
+        }
+    }
+
+    .editButton {
+        position: absolute;
+        right: 0.5rem;
+        top: 2.5rem;
+        a {
+            padding: 0.5rem;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: #aaaaaa;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            color: #000000;
+            &:hover {
+                background-color: #919191;
+            }
+        }
+    }
+}
