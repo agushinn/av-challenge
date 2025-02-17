@@ -14,16 +14,26 @@
     background-color: #181818;
     padding: 2rem;
     border-radius: 5px;
+
     .salariesContainer {
         display: flex;
         gap: 1rem;
         justify-content: center;
         align-items: center;
-    }
-    input {
-        padding: 0.5rem;
-        border: 1px solid black;
-        border-radius: 5px;
+
+        .formSalary {
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            label {
+                width: 100%;
+            }
+
+            input {
+                margin: 0;
+            }
+        }
     }
 
     .buttonsContainers {
@@ -59,70 +69,101 @@
             }
         }
     }
-    .checkboxContainer {
+
+    .includeExternalContainer {
         display: flex;
         justify-content: end;
     }
 }
 
 .jobsContainer {
-    display: flex;
+    display: none;
+    flex-direction: row;
     justify-content: space-evenly;
-    .jobsList {
-        width: 48%;
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
 
-        h5 {
-            color: #ccc;
-            text-align: center;
-            margin: 1rem 0;
-        }
+    @media (min-width: 1200px) {
+        display: flex;
     }
 
     .internalJobs {
-        h2 {
-            color: #ccc;
-        }
-        height: 12rem;
-        background-color: #390010;
-        border: 1px solid #ccc;
-        color: #ecbfcc;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
-        position: relative;
-        .editButton {
-            position: absolute;
-            right: 0.5rem;
-            top: 2.5rem;
-            a {
-                padding: 0.5rem;
-                border: 1px solid black;
-                border-radius: 5px;
-                background-color: #aaaaaa;
-                cursor: pointer;
-                text-decoration: none;
-                font-weight: 600;
-                color: #000000;
-                &:hover {
-                    background-color: #919191;
-                }
-            }
+        li {
+            background-color: #390010;
+            color: #ecbfcc;
+            position: relative;
         }
     }
 
     .externalJob {
-        height: 12rem;
-        h2 {
-            color: #ccc;
+        li {
+            background-color: #27002a;
+            color: #ba99bd;
         }
-        color: #ba99bd;
-        background-color: #27002a;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 10px 0;
+    }
+}
+
+.tabsSection {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    background-color: #0f0f0f;
+    position: relative;
+
+    .tabsContainer {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 1rem 0;
+        position: absolute;
+        top: -49px;
+
+        .tab {
+            color: #ccc;
+            border-radius: 5px;
+            padding: 0.5rem;
+            cursor: pointer;
+            display: block;
+            border-radius: 5px 5px 0px 0;
+            background-color: #6e0096;
+            border: 1px solid #6e0096;
+        }
+
+        .activeTab {
+            border: 1px solid transparent;
+            background-color: #0f0f0f;
+            color: #ccc;
+            border-radius: 5px 5px 0px 0;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+    }
+
+    .jobsContainerTabs {
+        .internalJobsTab {
+            display: none;
+
+            li {
+                background-color: #390010;
+                color: #ecbfcc;
+                position: relative;
+            }
+        }
+
+        .externalJobTab {
+            display: none;
+
+            li {
+                background-color: #27002a;
+                color: #ba99bd;
+            }
+        }
+
+        .active {
+            display: block;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        display: none;
     }
 }
