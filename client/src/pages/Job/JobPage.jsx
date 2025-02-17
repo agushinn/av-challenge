@@ -6,7 +6,8 @@ import { useGetJobsQuery } from '@store/api/apiSlice/jobsSlice'
 
 import { ErrorBox } from '@pages/Job/components/ErrorBox'
 import { JobSkelleton } from '@pages/Job/components/JobSkelleton'
-import { JobList } from '@pages/Job/components/JobList'
+import { TabbedJobList } from '@pages/Job/components/TabbedJobList'
+import { JobListSection } from '@pages/Job/components/JobListSection'
 import { Input } from '@components/UI/Form/Input'
 import { Checkbox } from '@components/UI/Form/Checkbox'
 
@@ -145,60 +146,16 @@ const JobPage = () => {
             {isLoading && <JobSkelleton />}
             {!isLoading && jobs && (
                 <>
-                    <div className={styles.tabsSection}>
-                        <div className={styles.tabsContainer}>
-                            <button
-                                className={
-                                    activeTab === 'grabShobel'
-                                        ? styles.activeTab
-                                        : styles.tab
-                                }
-                                onClick={() => handleTabClick('grabShobel')}
-                            >
-                                GrabShobel Jobs ({internalJobs.length})
-                            </button>
-                            <button
-                                className={
-                                    activeTab === 'external'
-                                        ? styles.activeTab
-                                        : styles.tab
-                                }
-                                onClick={() => handleTabClick('external')}
-                            >
-                                External Jobs ({externalJobs.length})
-                            </button>
-                        </div>
-                        <div className={styles.jobsContainerTabs}>
-                            <JobList
-                                className={`${styles.internalJobsTab} ${
-                                    activeTab === 'grabShobel'
-                                        ? styles.active
-                                        : ''
-                                }`}
-                                jobs={internalJobs}
-                                canEdit
-                            />
-                            <JobList
-                                className={`${styles.externalJobTab} ${
-                                    activeTab === 'external'
-                                        ? styles.active
-                                        : ''
-                                }`}
-                                jobs={externalJobs}
-                            />
-                        </div>
-                    </div>
-                    <div className={styles.jobsContainer}>
-                        <JobList
-                            className={styles.internalJobs}
-                            jobs={internalJobs}
-                            canEdit
-                        />
-                        <JobList
-                            className={styles.externalJob}
-                            jobs={externalJobs}
-                        />
-                    </div>
+                    <TabbedJobList
+                        internalJobs={internalJobs}
+                        externalJobs={externalJobs}
+                        activeTab={activeTab}
+                        handleTabClick={handleTabClick}
+                    />
+                    <JobListSection
+                        internalJobs={internalJobs}
+                        externalJobs={externalJobs}
+                    />
                 </>
             )}
         </section>

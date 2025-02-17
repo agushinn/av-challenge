@@ -2,7 +2,7 @@ import styles from '@styles/pages/Job/components/JobList.module.scss'
 import { currencyFormat } from '@utils/currencyFormat'
 import { Link } from 'react-router-dom'
 
-export const JobList = ({ jobs, className, canEdit }) => {
+const JobList = ({ jobs, className, canEdit }) => {
     return (
         <div className={className}>
             <h5 className={styles.jobsListTitle}>
@@ -38,3 +38,5 @@ export const JobList = ({ jobs, className, canEdit }) => {
         </div>
     )
 }
+
+export { JobList }

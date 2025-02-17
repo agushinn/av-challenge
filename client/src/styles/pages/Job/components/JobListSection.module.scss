@@ -1,0 +1,24 @@
+.jobsContainer {
+    display: none;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    @media (min-width: 1200px) {
+        display: flex;
+    }
+
+    .internalJobs {
+        li {
+            background-color: #390010;
+            color: #ecbfcc;
+            position: relative;
+        }
+    }
+
+    .externalJob {
+        li {
+            background-color: #27002a;
+            color: #ba99bd;
+        }
+    }
+}

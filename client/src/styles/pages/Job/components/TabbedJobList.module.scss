@@ -1,0 +1,66 @@
+.tabsSection {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    background-color: #0f0f0f;
+    position: relative;
+
+    .tabsContainer {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 1rem 0;
+        position: absolute;
+        top: -49px;
+
+        .tab {
+            color: #ccc;
+            border-radius: 5px;
+            padding: 0.5rem;
+            cursor: pointer;
+            display: block;
+            border-radius: 5px 5px 0px 0;
+            background-color: #6e0096;
+            border: 1px solid #6e0096;
+        }
+
+        .activeTab {
+            border: 1px solid transparent;
+            background-color: #0f0f0f;
+            color: #ccc;
+            border-radius: 5px 5px 0px 0;
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+    }
+
+    .jobsContainerTabs {
+        .internalJobsTab {
+            display: none;
+
+            li {
+                background-color: #390010;
+                color: #ecbfcc;
+                position: relative;
+            }
+        }
+
+        .externalJobTab {
+            display: none;
+
+            li {
+                background-color: #27002a;
+                color: #ba99bd;
+            }
+        }
+
+        .active {
+            display: block;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        display: none;
+    }
+}
