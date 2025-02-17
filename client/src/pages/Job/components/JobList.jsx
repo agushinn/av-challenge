@@ -52,12 +52,12 @@ const JobList = ({ jobs, className, canEdit }) => {
         <div className={className}>
             <div className={styles.sortContainer}>
                 <select name="sortType" id="sortType" onChange={handleSortType}>
-                    <option value="TITLE">Title</option>
-                    <option value="SALARY">Salary</option>
+                    <option value={SORT_TYPES.TITLE}>Title</option>
+                    <option value={SORT_TYPES.SALARY}>Salary</option>
                 </select>
                 <select name="sort" id="sort" onChange={handleSort}>
-                    <option value="ASC">Ascending</option>
-                    <option value="DESC">Descending</option>
+                    <option value={SORT_ORDER.ASC}>Ascending</option>
+                    <option value={SORT_ORDER.DESC}>Descending</option>
                 </select>
             </div>
             <div className={styles.sortInfo}>
