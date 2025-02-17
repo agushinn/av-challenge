@@ -21,10 +21,16 @@ export const jobsSlice = baseApi.injectEndpoints({
                 return `get_all_job_posts.php?${queryParams.toString()}`
             },
             providesTags: ['Jobs'],
+            transformResponse: (response) => {
+                return response.data
+            },
         }),
         getJob: builder.query({
             query: (id) => `get_job_post.php?id=${id}`,
             providesTags: ['Job'],
+            transformResponse: (response) => {
+                return response.data
+            },
         }),
         createJob: builder.mutation({
             query: (body) => ({

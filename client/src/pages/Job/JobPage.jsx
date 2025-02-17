@@ -24,13 +24,11 @@ const JobPage = () => {
     const [queryParams, setQueryParams] = useState({})
 
     const {
-        data: response,
+        data: jobs,
         isLoading,
         isError,
         refetch,
     } = useGetJobsQuery(queryParams)
-
-    const jobs = response?.data
 
     const handleInputChange = (e) => {
         const { name, value } = e.target

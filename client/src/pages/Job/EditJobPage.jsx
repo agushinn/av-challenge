@@ -44,8 +44,8 @@ export const EditJobPage = () => {
     })
 
     useEffect(() => {
-        if (job?.data?.length > 0) {
-            const jobData = job.data[0]
+        if (job?.length > 0) {
+            const jobData = job[0]
             setFormValues({
                 title: jobData.title || '',
                 location: jobData.location || '',
