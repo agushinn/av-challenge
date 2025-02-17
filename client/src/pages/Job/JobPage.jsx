@@ -2,15 +2,16 @@ import { useState } from 'react'
 
 import styles from '@styles/pages/Job/JobPage.module.scss'
 
-import { Link } from 'react-router-dom'
 import { useGetJobsQuery } from '@store/api/apiSlice/jobsSlice'
-
-import { currencyFormat } from '@utils/currencyFormat'
 
 import { ErrorBox } from '@pages/Job/components/ErrorBox'
 import { JobSkelleton } from '@pages/Job/components/JobSkelleton'
+import { JobList } from '@pages/Job/components/JobList'
+import { Input } from '@components/UI/Form/Input'
+import { Checkbox } from '@components/UI/Form/Checkbox'
 
 const JobPage = () => {
+    const [activeTab, setActiveTab] = useState('grabShobel')
     const [formValues, setFormValues] = useState({
         include_external: true,
         title: '',
@@ -72,43 +73,46 @@ const JobPage = () => {
         (job) => typeof job.id === 'string' && job.id.includes('external')
     )
 
+    const handleTabClick = (tab) => {
+        setActiveTab(tab)
+    }
+
     return (
         <section className={styles.mainContainer}>
             <h2 className={styles.jobPageTitle}>FIND YOUR JOB</h2>
             <form onSubmit={handleSubmit} className={styles.formJob}>
-                <label htmlFor="title">Title</label>
-                <input
+                <Input
+                    className={styles.formTitle}
+                    label="Title"
                     value={formValues.title}
-                    type="text"
-                    placeholder="Title"
                     onChange={handleInputChange}
                     name="title"
+                    placeholder="Full Stack Developer"
                 />
-                <label htmlFor="location">Location</label>
-                <input
+                <Input
+                    className={styles.formLocation}
+                    label="Location"
                     value={formValues.location}
-                    type="text"
-                    placeholder="Location"
                     onChange={handleInputChange}
                     name="location"
+                    placeholder="USA"
                 />
-
                 <div className={styles.salariesContainer}>
-                    <label htmlFor="salaryMin">Min salary</label>
-                    <input
+                    <Input
+                        className={styles.formSalary}
+                        label="Min Salary"
                         value={formValues.salaryMin}
-                        type="number"
-                        placeholder="Min Salary"
                         onChange={handleInputChange}
                         name="salaryMin"
+                        placeholder="50000"
                     />
-                    <label htmlFor="salaryMax">Max salary</label>
-                    <input
+                    <Input
+                        className={styles.formSalary}
+                        label="Max Salary"
                         value={formValues.salaryMax}
-                        type="number"
-                        placeholder="Max Salary"
                         onChange={handleInputChange}
                         name="salaryMax"
+                        placeholder="100000"
                     />
                 </div>
                 <div className={styles.buttonsContainers}>
@@ -123,12 +127,9 @@ const JobPage = () => {
                         Search
                     </button>
                 </div>
-                <div className={styles.checkboxContainer}>
-                    <label htmlFor="include_external">
-                        Include external jobs
-                    </label>
-                    <input
-                        type="checkbox"
+                <div className={styles.includeExternalContainer}>
+                    <Checkbox
+                        label="Include external jobs"
                         checked={formValues.include_external}
                         onChange={(e) =>
                             setFormValues({
@@ -143,56 +144,62 @@ const JobPage = () => {
             {isError && <ErrorBox refetch={refetch} />}
             {isLoading && <JobSkelleton />}
             {!isLoading && jobs && (
-                <div className={styles.jobsContainer}>
-                    <ul className={styles.jobsList}>
-                        <h5> Result quantity: {internalJobs.length}</h5>
-                        {internalJobs.map((job) => (
-                            <li key={job.id} className={styles.internalJobs}>
-                                <h2>
-                                    {job.title} #{job.id}
-                                </h2>
-
-                                <p>
-                                    <span>Location: </span>
-                                    {job.location}
-                                </p>
-                                <p>
-                                    <span>Salary: </span>
-                                    {currencyFormat(job.salary)}
-                                </p>
-                                <div>
-                                    {job.skills.map((skill) => (
-                                        <span key={skill}>{skill} | </span>
-                                    ))}
-                                </div>
-                                <div className={styles.editButton}>
-                                    <Link to={`/edit/${job.id}`}>Edit</Link>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                    <ul className={styles.jobsList}>
-                        <h5>Result quantity: {externalJobs.length}</h5>
-                        {externalJobs.map((job) => (
-                            <li key={job.id} className={styles.externalJob}>
-                                <h2>{job.title}</h2>
-                                <p>
-                                    <span>Location: </span>
-                                    {job.location}
-                                </p>
-                                <p>
-                                    <span>Salary: </span>
-                                    {currencyFormat(job.salary)}
-                                </p>
-                                <div>
-                                    {job.skills.map((skill) => (
-                                        <span key={skill}>{skill} | </span>
-                                    ))}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <>
+                    <div className={styles.tabsSection}>
+                        <div className={styles.tabsContainer}>
+                            <button
+                                className={
+                                    activeTab === 'grabShobel'
+                                        ? styles.activeTab
+                                        : styles.tab
+                                }
+                                onClick={() => handleTabClick('grabShobel')}
+                            >
+                                GrabShobel Jobs ({internalJobs.length})
+                            </button>
+                            <button
+                                className={
+                                    activeTab === 'external'
+                                        ? styles.activeTab
+                                        : styles.tab
+                                }
+                                onClick={() => handleTabClick('external')}
+                            >
+                                External Jobs ({externalJobs.length})
+                            </button>
+                        </div>
+                        <div className={styles.jobsContainerTabs}>
+                            <JobList
+                                className={`${styles.internalJobsTab} ${
+                                    activeTab === 'grabShobel'
+                                        ? styles.active
+                                        : ''
+                                }`}
+                                jobs={internalJobs}
+                                canEdit
+                            />
+                            <JobList
+                                className={`${styles.externalJobTab} ${
+                                    activeTab === 'external'
+                                        ? styles.active
+                                        : ''
+                                }`}
+                                jobs={externalJobs}
+                            />
+                        </div>
+                    </div>
+                    <div className={styles.jobsContainer}>
+                        <JobList
+                            className={styles.internalJobs}
+                            jobs={internalJobs}
+                            canEdit
+                        />
+                        <JobList
+                            className={styles.externalJob}
+                            jobs={externalJobs}
+                        />
+                    </div>
+                </>
             )}
         </section>
     )
