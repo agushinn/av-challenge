@@ -14,7 +14,7 @@ use App\Interfaces\JobRepositoryInterface;
 class JobExternalRepository implements JobRepositoryInterface
 {
     private $apiUrl;
-    const API_URL = "http://localhost:8080";
+    const API_URL = "http://localhost:8080/api/v1";
 
     public function __construct()
     {
