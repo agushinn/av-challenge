@@ -1,19 +1,12 @@
 {
-  "name": "external-api-xml",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^22.13.4",
-    "nodemon": "^3.1.9"
-  },
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
