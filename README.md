@@ -49,7 +49,7 @@ The project consists of a backend in PHP and a frontend in React, with integrati
 1. Clone the repository into **htdocs**.
 2. **Configure the database**:
     - Open phpMyAdmin (http://localhost/phpmyadmin).
-    - Create a new database named `avature`.
+    - Create a new database named `grab_the_shovel`.
     - Import the database schema from `sql/setup.sql`.
 3. Configure credentials in **config/database.php** if necessary:
 
@@ -60,7 +60,7 @@ return [
         'port' => '3306',      // MySQL port
         'user' => 'root',      // MySQL user
         'password' => '',      // MySQL password (empty by default in XAMPP)
-        'database' => 'avature', // Database name
+        'database' => 'grab_the_shovel', // Database name
     ],
 ];
 ```
@@ -107,6 +107,6 @@ return [
 
 Additional Notes
 
-External API: Ensure the external service (https://github.com/avatureta/jobberwocky-extra-source-v2) is running to obtain external job offers.
+External API: Ensure the external service (https://github.com/grab_the_shovelta/jobberwocky-extra-source-v2) is running to obtain external job offers.
 CORS: Endpoints are configured to allow requests from http://localhost:5173 (React frontend).
 
