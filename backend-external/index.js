@@ -1,8 +1,8 @@
 const express = require('express')
 
 const app = express()
-const router = express.Router()
-const port = 8080
+
+// const port = 8080
 
 const JOBS = [
     {
@@ -262,11 +262,11 @@ function convertSkillsToXML(skillsArray) {
     )
 }
 
-app.listen(port, () => {
-    console.log('listening port ' + port)
-})
+// app.listen(port, () => {
+//     console.log('listening port ' + port)
+// })
 
-router.get('/jobs', (req, res) => {
+app.get('/api/v1/jobs', (req, res) => {
     try {
         let name = req.query.name
         let salary_min = req.query.salary_min
@@ -299,4 +299,6 @@ router.get('/jobs', (req, res) => {
     }
 })
 
-app.use('/api/v1', router)
+// app.use('/api/v1', router)
+
+module.exports = app;
